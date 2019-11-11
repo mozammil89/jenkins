@@ -1,12 +1,35 @@
-apiVersion: v1
-kind: Pod
+#apiVersion: v1
+#kind: Pod
+#metadata:
+#  name: review-app-moz
+#  labels:
+#    app: review-app-moz
+#spec:
+#  containers:
+#  - name: review-app-moz
+#    image: mozdockerregistry.azurecr.io/mozammiljenkins
+#  ports:
+#     - containerPort: 8000
+
+
+apiVersion: apps/v1
+kind: Deployment
 metadata:
-  name: review-app-moz
+  name: review-app-deployment
   labels:
-    app: review-app-moz
+    app: review-app
 spec:
-  containers:
-  - name: review-app-moz
-    image: mozdockerregistry.azurecr.io/mozammiljenkins
-  ports:
-     - containerPort: 8000
+  replicas: 1
+  selector:
+    matchLabels:
+      app: review-app
+  template:
+    metadata:
+      labels:
+        app: review-app
+    spec:
+      containers:
+      - name: review-app
+        image: mozdockerregistry.azurecr.io/mozammiljenkins
+        ports:
+        - containerPort: 8000
