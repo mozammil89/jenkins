@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: review-app-moz
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: review-app-moz
+  template:
+    metadata:
+      labels:
+        app: review-app-moz
+    spec:
+      nodeSelector:
+        "beta.kubernetes.io/os": linux
+      containers:
+      - name: review-app-moz
+        ports:
+        - containerPort: 8000
+          name: review-port
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: review-app-moz
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+  selector:
+    app: review-app-moz
