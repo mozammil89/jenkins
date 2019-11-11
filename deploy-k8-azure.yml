@@ -8,7 +8,7 @@ spec:
   containers:
   - name: review-app-moz
     image: mozdockerregistry.azurecr.io/mozammiljenkins
-    imagePullSecrets:
-    - name: azure-registry-secret
     ports:
     - containerPort: 8000
+  imagePullSecrets:
+    - name: azure-registry-secret
