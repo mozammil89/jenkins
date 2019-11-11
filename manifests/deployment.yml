@@ -1,0 +1,16 @@
+apiVersion : apps/v1beta1
+kind: Deployment
+metadata:
+  name: mozammiljenkins 
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: mozammiljenkins 
+    spec:
+      containers:
+        - name: mozammiljenkins 
+          image: mozdockerregistry.azurecr.io/mozammiljenkins
+          ports:
+          - containerPort: 8000
